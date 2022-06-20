@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@inject SignInManager<IdentityUser> _signInManager
+@inject SignInManager<IdentityUser> SignInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,36 +13,21 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Post" asp-action="Create">New post</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav flex-grow-1">
-                    @if (_signInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item">
-                            <span class="text-dark">Hello, @User.Identity?.Name</span>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="User" asp-action="Register">Register</a>
-                        </li>
-                    }
-                </ul>
+    <nav class="navbar navbar-expand-sm bg-dark text-white">
+        <div class="container-fluid justify-content-between">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">Blog</a>
+            <div>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div class="justify-content-around">
+                        <span class="nav-text">Hello, @User.Identity?.Name</span>
+                        <a asp-controller="User" asp-action="Logout" class="nav-item nav-link">Logout</a>
+                    </div>
+                }
+                else
+                {
+                    <a asp-controller="User" asp-action="Login" class="nav-item nav-link">Login</a>
+                }
             </div>
         </div>
     </nav>
