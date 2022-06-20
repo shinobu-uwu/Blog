@@ -64,4 +64,11 @@ public class UserController : Controller
         ModelState.AddModelError("", "Invalid login attempt");
         return View(userViewModel);
     }
+
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction("Login");
+    }
 }
