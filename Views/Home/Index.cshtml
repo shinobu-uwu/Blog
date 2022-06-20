@@ -4,11 +4,15 @@
 }
 
 <div>
-    @foreach (var post in Model)
-    {
-        <div class="container">
-            <h1>@post.Title</h1>
-            <p>@post.Body</p>
-        </div>
-    }
+    <ul class="list-group list-group-flush">
+        @foreach (var post in Model)
+        {
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <a class="list-group-item-action" href="/post/@post.Id">@post.Title</a>
+                    <button class="btn-sm btn-primary">Delete</button>
+                </div>
+            </li>
+        }
+    </ul>
 </div>
