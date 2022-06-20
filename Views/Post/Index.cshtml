@@ -1,0 +1,8 @@
+@model Post
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="container text-center">
+    <h1>@Model.Title</h1>
+    <pre>@Model.Body</pre>
+</div>
