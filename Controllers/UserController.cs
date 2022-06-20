@@ -61,6 +61,7 @@ public class UserController : Controller
             return RedirectToAction("Index", "Home");
         }
 
+        ModelState.AddModelError("", "Invalid login attempt");
         return View(userViewModel);
     }
 }
