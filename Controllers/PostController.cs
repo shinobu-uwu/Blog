@@ -14,6 +14,12 @@ public class PostController : Controller
         _postRepository = postRepository;
     }
 
+    [HttpGet(template: "/post/{id}")]
+    public IActionResult Index(int id)
+    {
+        return View(_postRepository.GetById(id));
+    }
+
     public IActionResult Create()
     {
         return View();
@@ -26,11 +32,11 @@ public class PostController : Controller
         {
             return View(postViewModel);
         }
-        
+
         var post = new Post(postViewModel.Title, postViewModel.Body);
         _postRepository.Add(post);
         _postRepository.Save();
-        
+
         return RedirectToAction("Index", "Home");
     }
 }
