@@ -1,0 +1,31 @@
+@model Blog.ViewModels.UserViewModel
+@{
+    ViewData["Title"] = "Create a post";
+}
+<form asp-action="Register" asp-controller="User" method="post">
+    <div class="container">
+        @if ((bool)(ViewData["Show alert"] ?? false))
+        {
+            <div class="alert alert-danger">
+                Something went wrong
+            </div>
+        }
+        <div class="m-3">
+            <label class="form-label" for="username">User name</label>
+            <input class="form-control" type="text" id="username" name="username"/>
+        </div>
+        <div class="m-3">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email"/>
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="m-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password"/>
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="m-3">
+            <input class="btn btn-primary" type="submit" value="Register"/>
+        </div>
+    </div>
+</form>
