@@ -1,11 +1,13 @@
 using Blog.Database.Repositories;
 using Blog.Models;
 using Blog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers;
 
+[Authorize]
 public class PostController : Controller
 {
     private readonly IPostRepository _postRepository;
@@ -17,8 +19,8 @@ public class PostController : Controller
         _userManager = userManager;
     }
 
-    [HttpGet(template: "/Post/{id}")]
-    public IActionResult Post(int id)
+    [AllowAnonymous]
+    public IActionResult View(int id)
     {
         return View(_postRepository.GetById(id));
     }

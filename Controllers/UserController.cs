@@ -1,10 +1,12 @@
 using Blog.Models;
 using Blog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers;
 
+[AllowAnonymous]
 public class UserController : Controller
 {
     private readonly UserManager<User> _userManager;
@@ -76,6 +78,7 @@ public class UserController : Controller
         return View(userViewModel);
     }
 
+    [Authorize]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
