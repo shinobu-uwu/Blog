@@ -22,7 +22,14 @@ public class PostController : Controller
     [AllowAnonymous]
     public IActionResult View(int id)
     {
-        return View(_postRepository.GetById(id));
+        var post = _postRepository.GetById(id);
+
+        if (!post.Enabled)
+        {
+            return RedirectToAction("Error");
+        }
+
+        return View(post);
     }
 
     public IActionResult Create()
@@ -51,5 +58,21 @@ public class PostController : Controller
         _postRepository.Save();
 
         return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        var post = _postRepository.GetById(id);
+        _postRepository.Disable(post);
+        _postRepository.Save();
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    [AllowAnonymous]
+    [ResponseCache(Duration = 300)]
+    public IActionResult Error()
+    {
+        return View();
     }
 }
