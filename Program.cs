@@ -18,6 +18,12 @@ builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IPostRepository, PostRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddIdentity<User, IdentityRole<int>>().AddEntityFrameworkStores<BlogDbContext>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/User/Login";
+    options.LoginPath = "/User/Login";
+    options.LogoutPath = "/User/Logout";
+});
 
 var app = builder.Build();
 
