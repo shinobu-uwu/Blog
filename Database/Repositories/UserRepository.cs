@@ -1,36 +1,47 @@
+using Blog.Exceptions.Entity;
+using Blog.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Blog.Database.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    public IdentityUser GetById(int id)
+    private readonly BlogDbContext _dbContext;
+
+    public UserRepository(BlogDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
     }
 
-    public IEnumerable<IdentityUser> GetAll()
+    public User GetById(int id)
     {
-        throw new NotImplementedException();
+        var user = _dbContext.Users.Find(id);
+
+        if (user is null)
+        {
+            throw new EntityNotFoundException("User", id.ToString());
+        }
+
+        return user;
     }
 
-    public IEnumerable<IdentityUser> GetAllEnabled()
+    public IEnumerable<User> GetAll()
     {
-        throw new NotImplementedException();
+        return _dbContext.Users;
     }
 
-    public void Add(IdentityUser model)
+    public void Add(User model)
     {
-        throw new NotImplementedException();
+        _dbContext.Users.Add(model);
     }
 
     public void Remove(int id)
     {
-        throw new NotImplementedException();
+        _dbContext.Users.Remove(new User{Id = id});
     }
 
     public void Save()
     {
-        throw new NotImplementedException();
+        _dbContext.SaveChanges();
     }
 }

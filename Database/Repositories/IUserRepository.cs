@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Identity;
+using Blog.Models;
 
 namespace Blog.Database.Repositories;
 
-public interface IUserRepository : IRepository<IdentityUser>
+public interface IUserRepository : IRepository<User>
 {
-    
 }
