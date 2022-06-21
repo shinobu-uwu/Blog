@@ -54,4 +54,11 @@ public class PostRepository : IPostRepository
     {
         return _dbContext.Posts.Where(p => p.Enabled == true).OrderBy(p => p.CreationDate);
     }
+
+    public void Disable(Post model)
+    {
+        model.Enabled = false;
+        _dbContext.Posts.Update(model);
+        _dbContext.SaveChanges();
+    }
 }

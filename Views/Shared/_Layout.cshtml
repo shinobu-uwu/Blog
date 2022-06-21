@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<User> SignInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,7 @@
     <nav class="navbar navbar-expand-sm bg-dark text-white">
         <div class="container-fluid justify-content-between">
             <a asp-controller="Home" asp-action="Index" class="navbar-brand">Blog</a>
+            <a asp-controller="Post" asp-action="Create" class="nav-item nav-link">New post</a>
             <div>
                 @if (SignInManager.IsSignedIn(User))
                 {

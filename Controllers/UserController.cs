@@ -1,15 +1,18 @@
+using Blog.Models;
 using Blog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers;
 
+[AllowAnonymous]
 public class UserController : Controller
 {
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<User> _userManager;
+    private readonly SignInManager<User> _signInManager;
 
-    public UserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+    public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -28,7 +31,14 @@ public class UserController : Controller
             return View(userViewModel);
         }
 
-        var user = new IdentityUser { Email = userViewModel.Email, UserName = userViewModel.UserName };
+        var user = new User
+        {
+            Email = userViewModel.Email,
+            UserName = userViewModel.UserName,
+            CreationDate = DateTime.Now,
+            Enabled = true
+        };
+
         var result = await _userManager.CreateAsync(user, userViewModel.Password);
 
         if (result.Succeeded)
@@ -36,7 +46,6 @@ public class UserController : Controller
             return RedirectToAction("Index", "Home");
         }
 
-        ViewData["Show alert"] = true;
         return View(userViewModel);
     }
 
@@ -53,8 +62,12 @@ public class UserController : Controller
             return View(userViewModel);
         }
 
-        var result =
-            await _signInManager.PasswordSignInAsync(userViewModel.UserName, userViewModel.Password, true, false);
+        var result = await _signInManager.PasswordSignInAsync(
+            userViewModel.UserName,
+            userViewModel.Password,
+            true,
+            false
+        );
 
         if (result.Succeeded)
         {
@@ -65,6 +78,7 @@ public class UserController : Controller
         return View(userViewModel);
     }
 
+    [Authorize]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
