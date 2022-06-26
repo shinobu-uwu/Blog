@@ -15,7 +15,10 @@ public class PostRepository : IPostRepository
 
     public Post GetById(int id)
     {
-        var user = _dbContext.Posts.Find(id);
+        var user = _dbContext.Posts
+            .Where(post => post.Id == id)
+            .Include(p => p.Author)
+            .First();
 
         if (user is null)
         {
@@ -27,12 +30,14 @@ public class PostRepository : IPostRepository
 
     public IEnumerable<Post> GetAll()
     {
-        return _dbContext.Posts;
+        return _dbContext.Posts.Include(p => p.Author);
     }
 
     public IEnumerable<Post> GetAllEnabled()
     {
-        return _dbContext.Posts.Where(p => p.Enabled == true);
+        return _dbContext.Posts
+            .Where(p => p.Enabled == true)
+            .Include(p => p.Author);
     }
 
     public void Add(Post model)
