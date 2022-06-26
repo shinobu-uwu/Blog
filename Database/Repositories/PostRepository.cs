@@ -1,6 +1,6 @@
 using Blog.Exceptions.Entity;
 using Blog.Models;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Database.Repositories;
 
@@ -57,13 +57,13 @@ public class PostRepository : IPostRepository
 
     public IEnumerable<Post> GetAllEnabledOrderedByDate()
     {
-        return _dbContext.Posts.Where(p => p.Enabled == true).OrderBy(p => p.CreationDate);
+        return _dbContext.Posts
+            .Where(p => p.Enabled == true)
+            .OrderBy(p => p.CreationDate);
     }
 
     public void Disable(Post model)
     {
         model.Enabled = false;
-        _dbContext.Posts.Update(model);
-        _dbContext.SaveChanges();
     }
 }
