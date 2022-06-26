@@ -110,6 +110,10 @@ public class PostController : Controller
             post.Body = postViewModel.Body;
             _postRepository.Save();
         }
+        catch (InvalidOperationException) // In case the user edits the HTML to remove the hidden input field
+        {
+            return RedirectToAction("Error");
+        }
         catch (EntityNotFoundException)
         {
             return RedirectToAction("Error");
