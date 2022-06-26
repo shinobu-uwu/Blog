@@ -4,6 +4,7 @@ namespace Blog.ViewModels;
 
 public class EditPostViewModel
 {
+    [Required]
     public int PostId { get; set; }
 
     [Required(ErrorMessage = "You must give your post a title")]
