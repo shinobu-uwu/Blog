@@ -92,6 +92,11 @@ public class PostController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(EditPostViewModel postViewModel)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(postViewModel);
+        }
+
         try
         {
             var post = _postRepository.GetById(postViewModel.PostId);
