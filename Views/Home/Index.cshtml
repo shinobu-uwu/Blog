@@ -10,7 +10,8 @@
             <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                     <a class="list-group-item-action" asp-controller="Post" asp-action="View" asp-route-id="@post.Id">@post.Title</a>
-                    <a class="btn-sm btn-primary" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+                    <a class="btn-sm btn-primary" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                    <a class="btn-sm btn-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
                 </div>
             </li>
         }
