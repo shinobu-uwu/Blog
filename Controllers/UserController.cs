@@ -83,6 +83,6 @@ public class UserController : Controller
     {
         await _signInManager.SignOutAsync();
 
-        return RedirectToAction("Login");
+        return RedirectToAction("Index", "Home");
     }
 }
