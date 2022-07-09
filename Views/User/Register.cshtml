@@ -1,8 +1,8 @@
 @model Blog.ViewModels.UserViewModel
 @{
-    ViewData["Title"] = "Create a post";
+    ViewData["Title"] = "Register";
 }
-<form asp-action="Register" asp-controller="User" method="post">
+<form asp-action="Register" asp-controller="User" method="post" enctype="multipart/form-data">
     <div class="container">
         @if ((bool)(ViewData["Show alert"] ?? false))
         {
@@ -23,6 +23,10 @@
             <label class="form-label" for="password">Password</label>
             <input class="form-control" type="password" id="password" name="password"/>
             <span asp-validation-for="Password"></span>
+        </div>
+        <div class="m-3">
+            <label class="form-label" for="avatar">Password</label>
+            <input class="form-control" type="file" id="avatar" name="avatar" asp-for="Avatar"/>
         </div>
         <div class="m-3">
             <input class="btn btn-primary" type="submit" value="Register"/>

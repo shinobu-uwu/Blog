@@ -6,4 +6,5 @@ public class User : IdentityUser<int>
 {
     public bool Enabled { get; set; }
     public DateTime CreationDate { get; init; }
+    public Avatar? Avatar { get; set; }
 }

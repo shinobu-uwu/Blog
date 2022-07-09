@@ -12,4 +12,5 @@ public class UserViewModel
     [Required]
     [DataType(DataType.Password)]
     public string Password { get; set; }
+    public IFormFile? Avatar { get; set; }
 }
