@@ -1,6 +1,7 @@
 using Blog.Exceptions.Entity;
 using Blog.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Database.Repositories;
 
@@ -15,7 +16,10 @@ public class UserRepository : IUserRepository
 
     public User GetById(int id)
     {
-        var user = _dbContext.Users.Find(id);
+        var user = _dbContext.Users
+            .Where(u => u.Id == id)
+            .Include(u => u.Avatar)
+            .FirstOrDefault();
 
         if (user is null)
         {
@@ -37,7 +41,7 @@ public class UserRepository : IUserRepository
 
     public void Remove(int id)
     {
-        _dbContext.Users.Remove(new User{Id = id});
+        _dbContext.Users.Remove(new User { Id = id });
     }
 
     public void Save()
