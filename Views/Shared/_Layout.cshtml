@@ -31,7 +31,7 @@
 
             <div class="flex-shrink-0 dropdown">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.EygFVLaHGtsc4JiwaK4ETwHaHa%26pid%3DApi&f=1" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <img src="@Url.Action("UserAvatar", "User")" alt="mdo" width="32" height="32" class="rounded-circle img-crop">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                     @if (SignInManager.IsSignedIn(User))
