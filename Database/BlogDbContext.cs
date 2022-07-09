@@ -8,6 +8,7 @@ namespace Blog.Database;
 public class BlogDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public DbSet<Post> Posts { get; set; }
+    public DbSet<Avatar> Avatars { get; set; }
 
     public BlogDbContext(DbContextOptions options)
         : base(options)
