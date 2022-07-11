@@ -122,6 +122,20 @@ public class PostController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+    public IActionResult UserPosts(int userId)
+    {
+        try
+        {
+            var posts = _postRepository.GetByUserOrderedByDate(userId);
+
+            return View(posts);
+        }
+        catch (EntityNotFoundException)
+        {
+            return RedirectToAction("Error");
+        }
+    }
+
     private async Task<bool> IsPostEditionValid(Post post)
     {
         var user = await _userManager.GetUserAsync(User);
