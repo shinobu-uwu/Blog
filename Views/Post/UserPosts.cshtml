@@ -1,0 +1,8 @@
+@model IEnumerable<Post>
+@{
+    ViewData["Title"] = "Posts";
+}
+
+@{
+    await Html.RenderPartialAsync("PostsList", Model);
+}
