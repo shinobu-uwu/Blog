@@ -63,11 +63,11 @@ public class PostRepository : IPostRepository
             .OrderByDescending(p => p.CreationDate);
     }
 
-    public IEnumerable<Post> GetByUserOrderedByDate(int userId)
+    public IEnumerable<Post> GetAllEnabledUserPostsOrderedByDate(int userId)
     {
         return _dbContext.Posts
             .Include(p => p.Author)
-            .Where(p => p.Author.Id == userId)
+            .Where(p => p.Author.Id == userId && p.Enabled == true)
             .OrderBy(p => p.CreationDate);
     }
 
