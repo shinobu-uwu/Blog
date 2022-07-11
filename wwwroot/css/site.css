@@ -1,22 +1,83 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.bg-main {
+    background-color: #d4afb9;
+}
+
+.bg-header {
+    background-color: #d1cfe2;
+}
+
+.list-group-item-action {
+    text-decoration: none;
+    color: #9cadce;
+}
+
+.btn-sm {
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #52b2cf;
+    border-color: #52b2cf;
+    outline-color: #52b2cf;
+}
+
+.btn-primary:hover {
+    background-color: #3998b6;
+    border-color: #3998b6;
+    outline-color: #3998b6;
+}
+
+.btn-primary:focus {
+    background-color: #6ccbe9;
+    border-color: #6ccbe9;
+    outline-color: #6ccbe9;
+}
+
+.btn-danger {
+    background-color: #ff9aa2;
+    border-color: #ff9aa2;
+    outline-color: #ff9aa2;
+}
+
+.btn-danger:hover {
+    background-color: #f59098;
+    border-color: #f59098;
+    outline-color: #f59098;
+}
+
+.btn-danger:focus {
+    background-color: #ffa4ac;
+    border-color: #ffa4ac;
+    outline-color: #ffa4ac;
+}
+
+.dropdown-menu {
+    background-color: #d1cfe2;
+}
+
+.dropdown-item:hover {
+    background-color: #d4afb9;
 }
 
 .img-crop {
-  object-fit: cover;
+    object-fit: cover;
 }

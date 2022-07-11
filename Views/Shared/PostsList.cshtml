@@ -8,7 +8,7 @@
 }
 
 <div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush rounded shadow">
         @foreach (var post in Model)
         {
             <li class="list-group-item">
@@ -16,7 +16,7 @@
                     <a class="list-group-item-action" asp-controller="Post" asp-action="View" asp-route-id="@post.Id">@post.Title</a>
                     @if (SignInManager.IsSignedIn(User) && post.Author.Id == user.Id)
                     {
-                        <a class="btn-sm btn-primary" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                        <a class="btn-sm btn-primary" style="margin-right: 5px;" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
                         <a class="btn-sm btn-danger" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
                     }
                 </div>
