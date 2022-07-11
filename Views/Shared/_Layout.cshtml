@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +41,7 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li>
-                            <a class="dropdown-item" href="#">Posts</a>
+                            <a class="dropdown-item" asp-controller="Post" asp-action="UserPosts" asp-route-userId="@user.Id">Posts</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="#">Settings</a>
