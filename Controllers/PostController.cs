@@ -126,7 +126,7 @@ public class PostController : Controller
     {
         try
         {
-            var posts = _postRepository.GetByUserOrderedByDate(userId);
+            var posts = _postRepository.GetAllEnabledUserPostsOrderedByDate(userId);
 
             return View(posts);
         }
