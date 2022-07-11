@@ -59,6 +59,15 @@ public class PostRepository : IPostRepository
     {
         return _dbContext.Posts
             .Where(p => p.Enabled == true)
+            .Include(p => p.Author)
+            .OrderByDescending(p => p.CreationDate);
+    }
+
+    public IEnumerable<Post> GetByUserOrderedByDate(int userId)
+    {
+        return _dbContext.Posts
+            .Include(p => p.Author)
+            .Where(p => p.Author.Id == userId)
             .OrderBy(p => p.CreationDate);
     }
 
