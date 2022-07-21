@@ -2,9 +2,9 @@
 @{
     ViewData["Title"] = Model.Title;
 }
-<div class="container text-center">
-    <h1>@Model.Title</h1>
-    <pre>@Model.Body</pre>
+<div class="bg-white bg-post container">
+    <h1 class="text-center">@Model.Title</h1>
+    <div id="post-body" class="post-body"></div>
 </div>
 <script type="text/javascript" defer>
     document.body.onload = () => {

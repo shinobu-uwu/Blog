@@ -81,3 +81,16 @@ body {
 .img-crop {
     object-fit: cover;
 }
+
+.bg-post {
+    position: relative;
+    border-radius: 20px;
+    max-width: 100%;
+    height: 83vh;
+    overflow: scroll;
+}
+
+.post-body {
+    margin: 0 10px;
+    white-space: pre-wrap;
+}
