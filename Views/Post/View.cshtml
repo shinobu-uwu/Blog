@@ -6,3 +6,9 @@
     <h1>@Model.Title</h1>
     <pre>@Model.Body</pre>
 </div>
+<script type="text/javascript" defer>
+    document.body.onload = () => {
+        let element = document.getElementById('post-body');
+        element.innerHTML += marked.parse('@Model.Body');
+    }
+</script>
